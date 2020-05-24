@@ -1,21 +1,14 @@
 from sqlalchemy import Column, Integer, String
+from sqlalchemy.orm import relationship
 from Database_connection.DBconnection import DBconnection
-
 from model.ORMbase import Base
-
-
-def get_all_product_category():
-    db = DBconnection()
-    session = db.getConnection_parameters()
-    productCategoryList = session.query(ProductCategory).all()
-    session.close()
-    return productCategoryList
 
 
 class ProductCategory(Base):
     __tablename__ = 'product_category'
     cat_id = Column(Integer, primary_key=True)
     catname = Column(String)
+    ProductObject = relationship("Product", back_populates="ProductCategoryObject")
 
     def get_product_category(self):
         db = DBconnection()
@@ -48,3 +41,11 @@ class ProductCategory(Base):
         existing_productCategory.catname = self.catname
         session.commit()
         session.close()
+
+
+def get_all_product_category():
+    db = DBconnection()
+    session = db.getConnection_parameters()
+    productCategoryList = session.query(ProductCategory).all()
+    session.close()
+    return productCategoryList

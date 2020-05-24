@@ -12,7 +12,7 @@ class Address(Base):
     state = Column(String)
     district = Column(String)
     pin_no = Column(String)
-    add=relationship("Customer", back_populates="addresses")
+    CustomerObject = relationship("Customer", back_populates="AddressObject")
 
     def add_address(self):
         db = DBconnection()

@@ -14,7 +14,7 @@ class Customer(Base):
     password = Column(String)
     dob = Column(Date)
     mobile_number = Column(String)
-    addresses = relationship("Address", back_populates='add')
+    AddressObject = relationship("Address", back_populates='CustomerObject')
 
     def get_customer(self):
         db = DBconnection()
