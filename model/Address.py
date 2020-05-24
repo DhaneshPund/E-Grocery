@@ -1,4 +1,4 @@
-from sqlalchemy import Column, String, Table, Integer, Date, ForeignKey, create_engine
+from sqlalchemy import Column, String, Integer, ForeignKey
 from model.ORMbase import Base
 from sqlalchemy.orm import relationship
 from Database_connection.DBconnection import DBconnection
@@ -12,7 +12,7 @@ class Address(Base):
     state = Column(String)
     district = Column(String)
     pin_no = Column(String)
-    add=relationship("Customer",back_populates="addresses")
+    add=relationship("Customer", back_populates="addresses")
 
     def add_address(self):
         db = DBconnection()
