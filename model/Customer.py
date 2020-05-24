@@ -1,4 +1,4 @@
-from sqlalchemy import Column, String, Table, Integer, Date
+from sqlalchemy import Column, String, Integer, Date
 from model.Address import Address
 from model.ORMbase import Base
 from sqlalchemy.orm import relationship
@@ -14,7 +14,7 @@ class Customer(Base):
     password = Column(String)
     dob = Column(Date)
     mobile_number = Column(String)
-    addresses=relationship("Address",back_populates='add')
+    addresses = relationship("Address", back_populates='add')
 
     def get_customer(self):
         db = DBconnection()
@@ -30,13 +30,6 @@ class Customer(Base):
         session.add(self)
         session.commit()
         session.close()
-
-    def get_all_customers(self):
-        db = DBconnection()
-        session = db.getConnection_parameters()
-        customer_list = session.query(Customer).all()
-        session.close()
-        return customer_list
 
     def update_customer(self):
         db = DBconnection()
@@ -64,3 +57,9 @@ class Customer(Base):
         session.close()
 
 
+def get_all_customers():
+    db = DBconnection()
+    session = db.getConnection_parameters()
+    customer_list = session.query(Customer).all()
+    session.close()
+    return customer_list
