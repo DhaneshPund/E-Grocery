@@ -12,6 +12,7 @@ class Product(Base):
     quantity = Column(Integer)
     ProductCategoryObject = relationship("ProductCategory", back_populates="ProductObject")
     KartObject = relationship("Kart", back_populates="ProductObject")
+    CustomerOrderObject = relationship("CustomerObject", back_populates="ProductObject")
 
     def get_product(self):
         db = DBconnection()

@@ -16,6 +16,7 @@ class Customer(Base):
     mobile_number = Column(String)
     AddressObject = relationship("Address", back_populates='CustomerObject')
     KartObject = relationship("Kart", back_populates="CustomerObject")
+    CustomerOrderObject = relationship("CustomerOrder", back_populates="CustomerObject")
 
     def get_customer(self):
         db = DBconnection()
